@@ -1,0 +1,16 @@
+﻿<Window x:Class="TheaterInventory.AddEditRequisiteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редактирование реквизита" Height="300" Width="400">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Название реквизита:" />
+            <TextBox Name="RequisiteNameTextBox" Margin="0,0,0,10" />
+
+            <TextBlock Text="Владелец:" />
+            <ComboBox Name="OwnerComboBox" DisplayMemberPath="UserName" SelectedValuePath="UserId" Margin="0,0,0,10" />
+
+            <Button Content="Сохранить" Click="SaveButton_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

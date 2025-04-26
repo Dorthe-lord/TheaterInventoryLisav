@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище PRACTICE_LISAVModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="UserCostumes">
+          <Key>
+            <PropertyRef Name="CostumeId" />
+          </Key>
+          <Property Name="CostumeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CostumeName" Type="nvarchar" MaxLength="128" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="UseRequisitiesCostumes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequsitId" Type="int" />
+          <Property Name="CostumeId" Type="int" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="128" />
+          <Property Name="UserLogin" Type="nvarchar" MaxLength="128" />
+          <Property Name="UserEmail" Type="nvarchar" MaxLength="128" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="UserRequisites">
+          <Key>
+            <PropertyRef Name="RequisitId" />
+          </Key>
+          <Property Name="RequisitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequisitName" Type="nvarchar" MaxLength="128" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <Association Name="FK__UserCostu__UserI__3C69FB99">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <End Role="UserCostumes" Type="Self.UserCostumes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserCostumes">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UseRequis__Costu__440B1D61">
+          <End Role="UserCostumes" Type="Self.UserCostumes" Multiplicity="0..1" />
+          <End Role="UseRequisitiesCostumes" Type="Self.UseRequisitiesCostumes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCostumes">
+              <PropertyRef Name="CostumeId" />
+            </Principal>
+            <Dependent Role="UseRequisitiesCostumes">
+              <PropertyRef Name="CostumeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UseRequis__Requs__4316F928">
+          <End Role="UserRequisites" Type="Self.UserRequisites" Multiplicity="0..1" />
+          <End Role="UseRequisitiesCostumes" Type="Self.UseRequisitiesCostumes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRequisites">
+              <PropertyRef Name="RequisitId" />
+            </Principal>
+            <Dependent Role="UseRequisitiesCostumes">
+              <PropertyRef Name="RequsitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UseRequis__UserI__44FF419A">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <End Role="UseRequisitiesCostumes" Type="Self.UseRequisitiesCostumes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UseRequisitiesCostumes">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRequi__UserI__398D8EEE">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <End Role="UserRequisites" Type="Self.UserRequisites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserRequisites">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище PRACTICE_LISAVModelContainer">
+          <EntitySet Name="UserCostumes" EntityType="Self.UserCostumes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UseRequisitiesCostumes" EntityType="Self.UseRequisitiesCostumes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRequisites" EntityType="Self.UserRequisites" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__UserCostu__UserI__3C69FB99" Association="Self.FK__UserCostu__UserI__3C69FB99">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="UserCostumes" EntitySet="UserCostumes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UseRequis__Costu__440B1D61" Association="Self.FK__UseRequis__Costu__440B1D61">
+            <End Role="UserCostumes" EntitySet="UserCostumes" />
+            <End Role="UseRequisitiesCostumes" EntitySet="UseRequisitiesCostumes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UseRequis__Requs__4316F928" Association="Self.FK__UseRequis__Requs__4316F928">
+            <End Role="UserRequisites" EntitySet="UserRequisites" />
+            <End Role="UseRequisitiesCostumes" EntitySet="UseRequisitiesCostumes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UseRequis__UserI__44FF419A" Association="Self.FK__UseRequis__UserI__44FF419A">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="UseRequisitiesCostumes" EntitySet="UseRequisitiesCostumes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRequi__UserI__398D8EEE" Association="Self.FK__UserRequi__UserI__398D8EEE">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="UserRequisites" EntitySet="UserRequisites" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PRACTICE_LISAVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="UserCostumes">
+          <Key>
+            <PropertyRef Name="CostumeId" />
+          </Key>
+          <Property Name="CostumeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CostumeName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK__UserCostu__UserI__3C69FB99" FromRole="UserCostumes" ToRole="UserInfo" />
+          <NavigationProperty Name="UseRequisitiesCostumes" Relationship="Self.FK__UseRequis__Costu__440B1D61" FromRole="UserCostumes" ToRole="UseRequisitiesCostumes" />
+        </EntityType>
+        <EntityType Name="UseRequisitiesCostumes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequsitId" Type="Int32" />
+          <Property Name="CostumeId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="UserCostumes" Relationship="Self.FK__UseRequis__Costu__440B1D61" FromRole="UseRequisitiesCostumes" ToRole="UserCostumes" />
+          <NavigationProperty Name="UserRequisites" Relationship="Self.FK__UseRequis__Requs__4316F928" FromRole="UseRequisitiesCostumes" ToRole="UserRequisites" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK__UseRequis__UserI__44FF419A" FromRole="UseRequisitiesCostumes" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserLogin" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserEmail" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserCostumes" Relationship="Self.FK__UserCostu__UserI__3C69FB99" FromRole="UserInfo" ToRole="UserCostumes" />
+          <NavigationProperty Name="UseRequisitiesCostumes" Relationship="Self.FK__UseRequis__UserI__44FF419A" FromRole="UserInfo" ToRole="UseRequisitiesCostumes" />
+          <NavigationProperty Name="UserRequisites" Relationship="Self.FK__UserRequi__UserI__398D8EEE" FromRole="UserInfo" ToRole="UserRequisites" />
+        </EntityType>
+        <EntityType Name="UserRequisites">
+          <Key>
+            <PropertyRef Name="RequisitId" />
+          </Key>
+          <Property Name="RequisitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequisitName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="UseRequisitiesCostumes" Relationship="Self.FK__UseRequis__Requs__4316F928" FromRole="UserRequisites" ToRole="UseRequisitiesCostumes" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK__UserRequi__UserI__398D8EEE" FromRole="UserRequisites" ToRole="UserInfo" />
+        </EntityType>
+        <Association Name="FK__UserCostu__UserI__3C69FB99">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <End Role="UserCostumes" Type="Self.UserCostumes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserCostumes">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UseRequis__Costu__440B1D61">
+          <End Role="UserCostumes" Type="Self.UserCostumes" Multiplicity="0..1" />
+          <End Role="UseRequisitiesCostumes" Type="Self.UseRequisitiesCostumes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCostumes">
+              <PropertyRef Name="CostumeId" />
+            </Principal>
+            <Dependent Role="UseRequisitiesCostumes">
+              <PropertyRef Name="CostumeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UseRequis__Requs__4316F928">
+          <End Role="UserRequisites" Type="Self.UserRequisites" Multiplicity="0..1" />
+          <End Role="UseRequisitiesCostumes" Type="Self.UseRequisitiesCostumes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRequisites">
+              <PropertyRef Name="RequisitId" />
+            </Principal>
+            <Dependent Role="UseRequisitiesCostumes">
+              <PropertyRef Name="RequsitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UseRequis__UserI__44FF419A">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <End Role="UseRequisitiesCostumes" Type="Self.UseRequisitiesCostumes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UseRequisitiesCostumes">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRequi__UserI__398D8EEE">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <End Role="UserRequisites" Type="Self.UserRequisites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserRequisites">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PRACTICE_LISAVEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserCostumes" EntityType="Self.UserCostumes" />
+          <EntitySet Name="UseRequisitiesCostumes" EntityType="Self.UseRequisitiesCostumes" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
+          <EntitySet Name="UserRequisites" EntityType="Self.UserRequisites" />
+          <AssociationSet Name="FK__UserCostu__UserI__3C69FB99" Association="Self.FK__UserCostu__UserI__3C69FB99">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="UserCostumes" EntitySet="UserCostumes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UseRequis__Costu__440B1D61" Association="Self.FK__UseRequis__Costu__440B1D61">
+            <End Role="UserCostumes" EntitySet="UserCostumes" />
+            <End Role="UseRequisitiesCostumes" EntitySet="UseRequisitiesCostumes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UseRequis__Requs__4316F928" Association="Self.FK__UseRequis__Requs__4316F928">
+            <End Role="UserRequisites" EntitySet="UserRequisites" />
+            <End Role="UseRequisitiesCostumes" EntitySet="UseRequisitiesCostumes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UseRequis__UserI__44FF419A" Association="Self.FK__UseRequis__UserI__44FF419A">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="UseRequisitiesCostumes" EntitySet="UseRequisitiesCostumes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRequi__UserI__398D8EEE" Association="Self.FK__UserRequi__UserI__398D8EEE">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="UserRequisites" EntitySet="UserRequisites" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PRACTICE_LISAVModelContainer" CdmEntityContainer="PRACTICE_LISAVEntities">
+          <EntitySetMapping Name="UserCostumes">
+            <EntityTypeMapping TypeName="PRACTICE_LISAVModel.UserCostumes">
+              <MappingFragment StoreEntitySet="UserCostumes">
+                <ScalarProperty Name="CostumeId" ColumnName="CostumeId" />
+                <ScalarProperty Name="CostumeName" ColumnName="CostumeName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UseRequisitiesCostumes">
+            <EntityTypeMapping TypeName="PRACTICE_LISAVModel.UseRequisitiesCostumes">
+              <MappingFragment StoreEntitySet="UseRequisitiesCostumes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="RequsitId" ColumnName="RequsitId" />
+                <ScalarProperty Name="CostumeId" ColumnName="CostumeId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfo">
+            <EntityTypeMapping TypeName="PRACTICE_LISAVModel.UserInfo">
+              <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRequisites">
+            <EntityTypeMapping TypeName="PRACTICE_LISAVModel.UserRequisites">
+              <MappingFragment StoreEntitySet="UserRequisites">
+                <ScalarProperty Name="RequisitId" ColumnName="RequisitId" />
+                <ScalarProperty Name="RequisitName" ColumnName="RequisitName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

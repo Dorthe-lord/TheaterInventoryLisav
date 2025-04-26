@@ -1,0 +1,65 @@
+﻿<Window x:Class="TheaterInventory.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Учет реквизита и костюмов" Height="600" Width="900"
+        Background="{StaticResource SecondaryColor}">
+    <Grid>
+        <!-- Верхняя панель с логотипом -->
+        <DockPanel Background="{StaticResource PrimaryColor}" Height="60" DockPanel.Dock="Top">
+            <TextBlock Text="Театральный учет" VerticalAlignment="Center" FontSize="24" Foreground="White" Margin="10,0,0,0" />
+        </DockPanel>
+
+        <!-- Основной контент -->
+        <TabControl Background="{StaticResource SecondaryColor}" BorderThickness="0">
+            <!-- Вкладка для управления реквизитом -->
+            <TabItem Header="Реквизит" Background="{StaticResource PrimaryColor}" Foreground="White">
+                <Grid Background="White" Margin="10">
+                    <DataGrid Name="RequisitesDataGrid" Margin="10" AutoGenerateColumns="False" Background="White">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding RequisitId}" Width="50" IsReadOnly="True" />
+                            <DataGridTextColumn Header="Название" Binding="{Binding RequisitName}" Width="150" />
+                            <DataGridTextColumn Header="Владелец" Binding="{Binding UserInfo.UserName}" Width="150" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10">
+                        <Button Content="Добавить" Click="AddRequisite_Click" Margin="0,0,10,0" />
+                        <Button Content="Редактировать" Click="EditRequisite_Click" Margin="0,0,10,0" />
+                        <Button Content="Удалить" Click="DeleteRequisite_Click" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Вкладка для управления костюмами -->
+            <TabItem Header="Костюмы" Background="{StaticResource PrimaryColor}" Foreground="White">
+                <Grid Background="White" Margin="10">
+                    <DataGrid Name="CostumesDataGrid" Margin="10" AutoGenerateColumns="False" Background="White">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding CostumeId}" Width="50" IsReadOnly="True" />
+                            <DataGridTextColumn Header="Название" Binding="{Binding CostumeName}" Width="150" />
+                            <DataGridTextColumn Header="Владелец" Binding="{Binding UserInfo.UserName}" Width="150" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10">
+                        <Button Content="Добавить" Click="AddCostume_Click" Margin="0,0,10,0" />
+                        <Button Content="Редактировать" Click="EditCostume_Click" Margin="0,0,10,0" />
+                        <Button Content="Удалить" Click="DeleteCostume_Click" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Вкладка для просмотра распределения реквизита -->
+            <TabItem Header="Распределение" Background="{StaticResource PrimaryColor}" Foreground="White">
+                <Grid Background="White" Margin="10">
+                    <DataGrid Name="DistributionDataGrid" Margin="10" AutoGenerateColumns="False" Background="White">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="50" IsReadOnly="True" />
+                            <DataGridTextColumn Header="Реквизит" Binding="{Binding UserRequisites.RequisitName}" Width="150" />
+                            <DataGridTextColumn Header="Костюм" Binding="{Binding UserCostumes.CostumeName}" Width="150" />
+                            <DataGridTextColumn Header="Пользователь" Binding="{Binding UserInfo.UserName}" Width="150" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

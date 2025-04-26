@@ -1,0 +1,44 @@
+﻿<Application x:Class="TheaterInventory.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <!-- Основные цвета -->
+        <SolidColorBrush x:Key="PrimaryColor" Color="#FFA8C537" />
+        <!-- Салатовый -->
+        <SolidColorBrush x:Key="SecondaryColor" Color="#FFD4E6A1" />
+        <!-- Светло-салатовый -->
+        <SolidColorBrush x:Key="TextColor" Color="#FF333333" />
+        <!-- Темный текст -->
+
+        <!-- Стиль кнопок -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryColor}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource SecondaryColor}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Стиль заголовков -->
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource TextColor}" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </Application.Resources>
+</Application>
